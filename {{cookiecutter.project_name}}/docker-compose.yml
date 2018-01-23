@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  {{cookiecutter.project_name}}:
+    restart: always
+    build: ./build/
+    env_file: ./build/{{cookiecutter.project_name}}.env
+    volumes:
+      - ./code:/code/
+      - ./static:/code/static/
+      - ./media:/code/media/
+    network_mode: "host"
+    command: gunicorn --bind 0.0.0.0:{{cookiecutter.port}} {{cookiecutter.project_name}}.wsgi &

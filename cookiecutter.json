@@ -1,0 +1,15 @@
+{
+    "project_name": "test",
+    "admin_portal_url": "admin.{{cookiecutter.project_name}}.org",
+    "port": "8000",
+    "google_api_key": "google_api_key",
+    "juntagrico_admin_email": "juntagrico_admin_email",
+    "juntagrico_host_email": "juntagrico_host_email",
+    "juntagrico_database_password": "juntagrico_database_password",
+    "juntagrico_email_host": "juntagrico_email_host",
+    "juntagrico_email_password": "juntagrico_email_password",
+    "juntagrico_email_port": "juntagrico_email_port",
+    "juntagrico_email_user": "juntagrico_email_user",
+    "juntagrico_database_host": "juntagrico_database_host",
+    "juntagrico_database_port": "juntagrico_database_port"
+}
