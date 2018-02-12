@@ -11,5 +11,6 @@
     "juntagrico_email_port": "juntagrico_email_port",
     "juntagrico_email_user": "juntagrico_email_user",
     "juntagrico_database_host": "juntagrico_database_host",
-    "juntagrico_database_port": "juntagrico_database_port"
+    "juntagrico_database_port": "juntagrico_database_port",
+    "build": "build"
 }
