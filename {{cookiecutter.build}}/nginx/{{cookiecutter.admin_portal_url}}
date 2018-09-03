@@ -1,6 +1,6 @@
   
 server {
-    server_name {{cookiecutter.project_name}}.juntagrico.science {{cookiecutter.admin_portal_url}};
+    server_name {{cookiecutter.admin_portal_url}};
     listen 80;
 
     location = /favicon.ico { access_log off; log_not_found off; }
