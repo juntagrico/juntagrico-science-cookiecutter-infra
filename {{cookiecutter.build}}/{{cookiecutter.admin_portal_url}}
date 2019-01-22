@@ -1,0 +1,17 @@
+server {
+    server_name {{cookiecutter.admin_portal_url}};
+    listen 80;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /var/django/projects/{{cookiecutter.project_name}};
+    }
+
+    location /media/ {
+        root /var/django/projects/{{cookiecutter.project_name}};
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://0.0.0.0:{{cookiecutter.port}};
+}
