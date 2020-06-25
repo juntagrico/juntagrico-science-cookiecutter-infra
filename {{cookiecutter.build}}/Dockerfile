@@ -1,13 +1,26 @@
-FROM python:3.6-alpine3.7
+FROM python:3.8.1-alpine3.11
 
-ADD requirements.txt /requirements.txt 
-
-RUN apk add --no-cache --virtual .build-deps  gcc make libc-dev musl-dev linux-headers pcre-dev postgresql-dev git 
-
-RUN apk add --no-cache --virtual .build-deps build-base python-dev py-pip jpeg-dev zlib-dev
+ADD requirements.txt /requirements.txt
 
 ENV LIBRARY_PATH=/lib:/usr/lib
 
-RUN pip install --upgrade -r requirements.txt
+RUN apk add --no-cache --virtual .build-deps  gcc make libc-dev musl-dev linux-headers pcre-dev postgresql-dev git \
+    build-base python-dev py-pip jpeg-dev zlib-dev \
+    && pip install --upgrade pip \
+    && pip  install --upgrade -r requirements.txt \
+    && find /usr/local \
+        \( -type d -a -name test -o -name tests \) \
+        -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
+        -exec rm -rf '{}' + \
+    && runDeps="$( \
+        scanelf --needed --nobanner --recursive /usr/local \
+                | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+                | sort -u \
+                | xargs -r apk info --installed \
+                | sort -u \
+    )" \
+    && apk add --virtual .rundeps $runDeps \
+    && apk del .build-deps \
+    && apk add git
 
 WORKDIR /code/
