@@ -5,7 +5,7 @@ ADD requirements.txt /requirements.txt
 ENV LIBRARY_PATH=/lib:/usr/lib
 
 RUN apk add --no-cache --virtual .build-deps  gcc make libc-dev musl-dev linux-headers pcre-dev postgresql-dev git libxml2 \
-        libxml2-dev\
+        libxml2-dev libxslt libxslt-dev\
     build-base python-dev py-pip jpeg-dev zlib-dev \
     && pip install --upgrade pip \
     && pip  install --upgrade -r requirements.txt \
@@ -22,6 +22,6 @@ RUN apk add --no-cache --virtual .build-deps  gcc make libc-dev musl-dev linux-h
     )" \
     && apk add --virtual .rundeps $runDeps \
     && apk del .build-deps \
-    && apk add git libxml2 libxml2-dev
+    && apk add git libxml2 libxml2-dev libxslt libxslt-dev
 
 WORKDIR /code/
