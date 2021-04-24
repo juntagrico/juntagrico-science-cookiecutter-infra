@@ -22,6 +22,6 @@ RUN apk add --no-cache --virtual .build-deps  gcc make libc-dev musl-dev linux-h
     )" \
     && apk add --virtual .rundeps $runDeps \
     && apk del .build-deps \
-    && apk add git libxml2 libxml2-dev libxslt libxslt-dev
+    && apk add git libxml2 libxml2-dev libxslt libxslt-dev gcc musl-dev
 
 WORKDIR /code/
