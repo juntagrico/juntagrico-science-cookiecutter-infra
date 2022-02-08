@@ -1,4 +1,4 @@
-FROM python:3.8.1-alpine3.11
+FROM python:3.9-alpine
 
 ADD requirements.txt /requirements.txt
 
@@ -20,8 +20,6 @@ RUN apk add --no-cache --virtual .build-deps  gcc make libc-dev musl-dev linux-h
                 | xargs -r apk info --installed \
                 | sort -u \
     )" \
-    && apk add --virtual .rundeps $runDeps \
-    && apk del .build-deps \
-    && apk add git libxml2 libxml2-dev libxslt libxslt-dev gcc musl-dev
+    && apk add --virtual .rundeps $runDeps 
 
 WORKDIR /code/
