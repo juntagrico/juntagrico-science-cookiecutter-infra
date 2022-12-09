@@ -6,7 +6,7 @@ ENV LIBRARY_PATH=/lib:/usr/lib
 
 RUN apk add --no-cache --virtual .build-deps  gcc make libc-dev musl-dev linux-headers pcre-dev postgresql-dev git libxml2 \
         libxml2-dev libxslt libxslt-dev\
-    build-base python-dev py-pip jpeg-dev zlib-dev \
+    build-base python3-dev py-pip jpeg-dev zlib-dev \
     && pip install --upgrade pip \
     && pip  install --upgrade -r requirements.txt \
     && find /usr/local \
